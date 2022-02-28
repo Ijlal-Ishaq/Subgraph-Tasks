@@ -1,0 +1,6 @@
+{
+  users(orderBy:_balance  orderDirection:asc first:100){
+    id
+    _balance
+  }
+}

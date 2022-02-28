@@ -1,0 +1,63 @@
+type BaseInterestUpdated @entity {
+  id: ID!
+  _newRate: BigInt! # uint256
+  _oldRate: BigInt! # uint256
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Paused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type StakeCompleted @entity {
+  id: ID!
+  altQuantity: BigInt! # uint256
+  initiationTimestamp: BigInt! # uint256
+  durationTimestamp: BigInt! # uint256
+  rewardAmount: BigInt! # uint256
+  staker: Bytes! # address
+  phnxContractAddress: Bytes! # address
+  portalAddress: Bytes! # address
+}
+
+type Unpaused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type Unstake @entity {
+  id: ID!
+  staker: Bytes! # address
+  stakedToken: Bytes! # address
+  portalAddress: Bytes! # address
+  altQuantity: BigInt! # uint256
+  durationTimestamp: BigInt! # uint256
+}
+
+type User @entity {
+  id: ID!
+  stakedAmount: BigInt!
+  transactions: [Transaction!]! @derivedFrom(field: "user")
+}
+
+type Transaction @entity {
+  id: ID!
+  type: String!
+  amount: BigInt!
+  timeStamp: BigInt!
+  txHash: String!
+  blockNo: BigInt!
+  user: User!
+}
+
+type ContractDetail @entity {
+  id: ID!
+  stakedAmount: BigInt!
+  totalRewardDistributed: BigInt!
+}

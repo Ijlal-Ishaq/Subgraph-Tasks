@@ -1,0 +1,102 @@
+type Approval @entity {
+  id: ID!
+  _owner: Bytes! # address
+  _spender: Bytes! # address
+  _amount: BigInt! # uint256
+}
+
+type Burn @entity {
+  id: ID!
+  _burner: Bytes! # address
+  _amount: BigInt! # uint256
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Transfer @entity {
+  id: ID!
+  _from: Bytes! # address
+  _to: Bytes! # address
+  _amount: BigInt! # uint256
+  timestamp: BigInt!
+}
+
+type UserToken @entity {
+  id: ID!
+  _balance: BigInt!
+  _allowanceAmount: BigInt!
+}
+
+type TokenDetail @entity {
+  id: ID!
+  _holders: BigInt!
+  _totalSupply: BigInt!
+}
+
+type BaseInterestUpdated @entity {
+  id: ID!
+  _newRate: BigInt! # uint256
+  _oldRate: BigInt! # uint256
+}
+
+type OwnershipTransferredStaking @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Paused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type StakeCompleted @entity {
+  id: ID!
+  altQuantity: BigInt! # uint256
+  initiationTimestamp: BigInt! # uint256
+  durationTimestamp: BigInt! # uint256
+  rewardAmount: BigInt! # uint256
+  staker: Bytes! # address
+  phnxContractAddress: Bytes! # address
+  portalAddress: Bytes! # address
+}
+
+type Unpaused @entity {
+  id: ID!
+  account: Bytes! # address
+}
+
+type Unstake @entity {
+  id: ID!
+  staker: Bytes! # address
+  stakedToken: Bytes! # address
+  portalAddress: Bytes! # address
+  altQuantity: BigInt! # uint256
+  durationTimestamp: BigInt! # uint256
+}
+
+type UserStaking @entity {
+  id: ID!
+  stakedAmount: BigInt!
+  transactions: [Transaction!]! @derivedFrom(field: "user")
+}
+
+type Transaction @entity {
+  id: ID!
+  type: String!
+  amount: BigInt!
+  timeStamp: BigInt!
+  txHash: String!
+  blockNo: BigInt!
+  user: UserStaking!
+}
+
+type ContractDetail @entity {
+  id: ID!
+  stakedAmount: BigInt!
+  totalRewardDistributed: BigInt!
+}

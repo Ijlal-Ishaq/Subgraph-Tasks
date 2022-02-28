@@ -1,0 +1,9 @@
+{
+  transfers(orderBy:timestamp  orderDirection:desc first:1000){
+    id
+    _from
+    _to
+    _amount
+    timestamp
+  }
+}

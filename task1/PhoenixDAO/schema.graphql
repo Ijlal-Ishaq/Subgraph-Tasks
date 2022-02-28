@@ -1,0 +1,38 @@
+type Approval @entity {
+  id: ID!
+  _owner: Bytes! # address
+  _spender: Bytes! # address
+  _amount: BigInt! # uint256
+}
+
+type Burn @entity {
+  id: ID!
+  _burner: Bytes! # address
+  _amount: BigInt! # uint256
+}
+
+type OwnershipTransferred @entity {
+  id: ID!
+  previousOwner: Bytes! # address
+  newOwner: Bytes! # address
+}
+
+type Transfer @entity {
+  id: ID!
+  _from: Bytes! # address
+  _to: Bytes! # address
+  _amount: BigInt! # uint256
+  timestamp: BigInt!
+}
+
+type User @entity {
+  id: ID!
+  _balance: BigInt!
+  _allowanceAmount: BigInt!
+}
+
+type TokenDetail @entity {
+  id: ID!
+  _holders: BigInt!
+  _totalSupply: BigInt!
+}
